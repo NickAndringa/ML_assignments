@@ -1,6 +1,6 @@
 class Perceptron:
 
-    def __init__(self, weights, bias):
+    def __init__(self, weights, bias, eta=0.1,):
         """
         Initializes the perceptron.
         :param weights: The weights of the perceptron.
@@ -8,6 +8,9 @@ class Perceptron:
         """
         self.weights = weights
         self.bias = bias
+        self.eta = eta
+        self.error = None
+
            
     def step(self, x):
         """
@@ -27,6 +30,46 @@ class Perceptron:
         for i in range(len(temp_inputs)):
             temp_inputs[i] *= self.weights[i]
         return self.step(sum(temp_inputs) + self.bias)
+    
+    def update(self, inputs, d):
+        """
+        Updates the weights and bias of the perceptron.
+        :param inputs: The inputs to the perceptron.
+        :param d: The desired output of the perceptron.
+        """
+
+        y = self.activate(inputs)
+        self.error = d - y
+
+        # eta * error * input
+
+        weight_deltas = [self.eta * self.error * input for input in inputs]
+        self.weights = [sum(x) for x in zip(self.weights, weight_deltas)]
+
+        # Resultaat opslaan in self.weighted_deltas
+        # Delta's aan de weights toevoegen
+
+        # eta * error
+        # Reultaat opslaan in bias_delta
+        # bias + bias_delta
+
+        bias_delta = self.eta * self.error
+        self.bias += bias_delta
+
+
+        # weights = 0
+        # for i in learning_rate[1]:
+        # output = self.activate(inputs)
+
+        return
+    
+    def loss(self, inputs, d):
+        """
+        Calculates the loss of the perceptron.
+        :param inputs: The inputs to the perceptron.
+        :param d: The desired output of the perceptron.
+        """
+        self.mse = sum([(d - (w * x)) ** 2 for w, x in zip(self.weights, inputs)]) / len(inputs)
 
     def __str__(self) -> str:
         """
