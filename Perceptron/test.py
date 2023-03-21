@@ -152,7 +152,7 @@ class TestPerceptron(unittest.TestCase):
             [[0, 0], 0],
             [[1, 0], 1],
             [[0, 1], 1],
-            [[1, 1], 1]
+            [[1, 1], 0]
         ]
         while not correct:
             for io in input_out:
