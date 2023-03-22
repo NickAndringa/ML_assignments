@@ -1,3 +1,5 @@
+from sklearn.datasets import load_iris
+
 class NeuronNetwerk:
 
     def __init__(self, layers = []):
@@ -48,7 +50,7 @@ class NeuronNetwerk:
         for layer in self.layers:
             layer.update()
 
-    def train(self, inputs, targets, eta = 0.1, max_epochs = 10000):
+    def train(self, inputs, targets, eta = 0.1, max_epochs = 1000):
         """
         Trains the netwerk.
         :param inputs: The inputs to the netwerk.
