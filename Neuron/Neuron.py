@@ -1,4 +1,5 @@
 import math
+import random
 
 class Neuron:
     def __init__(self, weights, bias, eta=0.1):
